@@ -7,13 +7,11 @@ module.exports = function(world) {
     this.drinks = 0;
   }
 
-  // Creature.prototype.drink = function(beverage) {
-  //   if (beverage instanceof world.Item.Beverage) {
-  //     //drink it
-  //   } else {
-  //     //i cant drink this
-  //   }
-  // }
+  Creature.prototype.drink = function(beverage) {
+    if (beverage instanceof world.Item.Beverage.AlcoholicBeverage) this.drinks++;
+    if (beverage instanceof world.Item.Beverage) return console.log('gulp');
+    return console.log('i cant drink this');
+  }
 
   var firstBorn = world.Creature.firstBorn = new Creature();
 
