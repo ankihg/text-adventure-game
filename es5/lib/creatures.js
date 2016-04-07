@@ -6,6 +6,7 @@ module.exports = function(world) {
     this.mood = 'fine';
     this.drinks = 0;
     this.cash = 5;
+    this.location; //new world.Location.Home()
   }
 
   // MAYBE CREATURE ACTIONS RETURN NEXT POSSIBLE ACTIONS??
@@ -25,6 +26,13 @@ module.exports = function(world) {
     this.cash -= item.cost;
     this.backpack.push(item);
   }
+
+  Creature.prototype.goTo = function(location) {
+    if (!(location instanceof world.Location)) return console.log('no trespassing');
+    this.location = location;
+    console.log('welcome to ' + location.name);
+  }
+
 
   var firstBorn = world.Creature.firstBorn = new Creature();
 
