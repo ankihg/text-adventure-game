@@ -13,6 +13,7 @@ module.exports = function(world) {
     if (beverage instanceof world.Item.Beverage) {
       if (this.backpack.indexOf(beverage) < 0) return console.log('i dont have a ' + beverage.name);
       if (beverage instanceof world.Item.Beverage.AlcoholicBeverage) this.drinks++;
+      this.backpack.splice(this.backpack.indexOf(beverage), 1);
       return console.log('gulp');
     }
     return console.log('i cant drink this');

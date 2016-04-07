@@ -10,9 +10,7 @@ module.exports = function(world) {
   }
   Bar.prototype = new Location();
 
-  var kellis = world.Location.Bar.kellis = function(acquirables) {
-    
-  }
+  // var kellis = world.Location.Bar.kellis = Bar([wo]);
 
 
 }
