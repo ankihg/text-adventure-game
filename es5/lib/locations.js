@@ -14,13 +14,13 @@ module.exports = function(world) {
 
 
   /* HELPER OBJECTs */
-  function MenuItem(acquirable, cost) {
+  var MenuItem = world.Location.MenuItem = function(acquirable, cost) {
     this.acquirable = acquirable;
     this.cost = cost;
   }
 
 
-  var kellis = world.Location.Bar.kellis = new Bar('kellis', [new MenuItem(world.Item.Beverage.AlcoholicBeverage.PBR, 2)]);
+  // var kellis = world.Location.Bar.kellis = new Bar('kellis', [new MenuItem(world.Item.Beverage.AlcoholicBeverage.PBR, 2)]);
 
 
 }

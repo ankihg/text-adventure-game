@@ -42,7 +42,7 @@ module.exports = function(world) {
   }
 
 
-  var firstBorn = world.Creature.firstBorn = new Creature();
+  // var firstBorn = world.Creature.firstBorn = new Creature();
 
 
 }
