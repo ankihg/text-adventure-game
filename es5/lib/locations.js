@@ -14,15 +14,15 @@ module.exports = function(world) {
   Bar.prototype = new Location();
 
 
-  /* HELPER OBJECTs */
-  var MenuItem = world.Location.MenuItem = function(acquirable, cost) {
-    this.acquirable = acquirable;
-    this.cost = cost;
-  }
-
-  // var Amenity = world.Location.Amenity = function('name', affectDoer) {
-  //
+  // /* HELPER OBJECTs */
+  // var MenuItem = world.Location.MenuItem = function(acquirable, cost) {
+  //   this.acquirable = acquirable;
+  //   this.cost = cost;
   // }
+  //
+  // // var Amenity = world.Location.Amenity = function('name', affectDoer) {
+  // //
+  // // }
 
 
   // var kellis = world.Location.Bar.kellis = new Bar('kellis', [new MenuItem(world.Item.Beverage.AlcoholicBeverage.PBR, 2)]);

@@ -39,7 +39,7 @@ Game.prototype.makeRealWorld = function() {
 
 
   // locations
-  var kellis = this.world.Location.Bar.kellis = new this.world.Location.Bar('kellis', [new this.world.Location.MenuItem(this.world.Item.Beverage.AlcoholicBeverage.PBR, 2)]);
+  var kellis = this.world.Location.Bar.kellis = new this.world.Location.Bar('kellis', [new this.world.Misc.MenuItem(this.world.Item.Beverage.AlcoholicBeverage.PBR, 2)]);
 }
 
 // prompt next moves
