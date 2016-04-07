@@ -1,3 +1,13 @@
+var readline = require('readline');
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false
+});
+rl.on('line', function(line){
+    console.log(line);
+});
+
 // init game
 var Game = module.exports = function(world) {
   this.world = world; //has constructors of objects found in world
@@ -19,8 +29,5 @@ Game.prototype.makeRealWorld = function() {
 Game.prototype.prompt = function(creature) {
   console.log(creature.name + 's turn');
 }
-
-
-
 
 // read input

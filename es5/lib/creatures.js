@@ -11,6 +11,10 @@ module.exports = function(world) {
   }
 
   // MAYBE CREATURE ACTIONS RETURN NEXT POSSIBLE ACTIONS??
+  // Creature.prototype.use = function(amenity) {
+  //   console.log(amenity);
+  // }
+
   Creature.prototype.drink = function(beverage) {
     if (beverage instanceof world.Item.Beverage) {
       if (this.backpack.indexOf(beverage) < 0) return console.log('i dont have a ' + beverage.name);
