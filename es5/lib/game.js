@@ -14,11 +14,14 @@ var Game = module.exports = function(world) {
 
 Game.prototype.play = function() {
   this.currentPlayer = this.players[this.turns % this.players.length];
-  this.prompt(this.currentPlayer);
+  var options = this.prompt(this.currentPlayer);
 
   var game = this;
   this.read(function(response) {
     console.log('got line '+response);
+
+    var action = options[parseInt(response)];
+    if (action) action.do();
 
     game.turns++;
     game.play();
@@ -41,8 +44,9 @@ Game.prototype.makeRealWorld = function() {
 Game.prototype.prompt = function(creature) {
   console.log(creature.name + 's turn');
   console.log(creature.assessOptions());
-  var seeMenu = creature.assessOptions()[0];
-  seeMenu.do();
+  // var seeMenu = creature.assessOptions()[0];
+  // seeMenu.do();
+  return creature.options;
 }
 
 // read input
