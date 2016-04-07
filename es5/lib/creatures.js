@@ -1,9 +1,7 @@
 module.exports = function(world) {
 
   // conceive
-  world.Creature = {};
-
-  var Creature = world.Creature.Creature = function() {
+  var Creature = world.Creature = function() {
     this.items = [];
     this.mood = 'fine';
     this.drinks = 0;
