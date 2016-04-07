@@ -1,27 +1,26 @@
 // init game
-function Game(world) {
+var Game = module.exports = function(world) {
   this.world = world; //has constructors of objects found in world
-  this.name = 'plz';
-  // this.makeRealWorld(); // adds instances of constructors to world
+}
+
+Game.prototype.play = function() {
+  this.prompt(this.world.Creature.firstBorn);
 }
 
 Game.prototype.makeRealWorld = function() {
   // creatures
-  var firstBorn = this.world.Creature.firstBorn = new this.world.Creature();
+  var firstBorn = this.world.Creature.firstBorn = new this.world.Creature('i was born first');
 
   // locations
   var kellis = this.world.Location.Bar.kellis = new this.world.Location.Bar('kellis', [new this.world.Location.MenuItem(this.world.Item.Beverage.AlcoholicBeverage.PBR, 2)]);
 }
 
-module.exports = Game;
-
-
-
+// prompt next moves
+Game.prototype.prompt = function(creature) {
+  console.log(creature.name + 's turn');
+}
 
 
 
 
 // read input
-
-
-//prompt next moves
