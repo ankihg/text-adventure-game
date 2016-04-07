@@ -4,9 +4,6 @@ var rl = readline.createInterface({
   output: process.stdout,
   terminal: false
 });
-rl.on('line', function(line){
-    console.log(line);
-});
 
 // init game
 var Game = module.exports = function(world) {
@@ -15,6 +12,13 @@ var Game = module.exports = function(world) {
 
 Game.prototype.play = function() {
   this.prompt(this.world.Creature.firstBorn);
+
+  var game = this;
+  this.read(function(response) {
+    console.log('got line '+response);
+
+    game.play();
+  });
 }
 
 Game.prototype.makeRealWorld = function() {
@@ -31,3 +35,8 @@ Game.prototype.prompt = function(creature) {
 }
 
 // read input
+Game.prototype.read = function(next) {
+  rl.once('line', function(line){
+      if (line) next(line);
+  });
+}
