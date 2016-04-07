@@ -27,6 +27,14 @@ module.exports = function(world) {
     this.backpack.push(item);
   }
 
+  Creature.prototype.order = function(itemName) {
+    var menuMatch = this.location.menu.filter(function(menuItem) {
+      return menuItem.acquirable.substance === itemName;
+    })[0];
+    if (!menuMatch) return console.log('out of stock');
+    this.acquire(new menuMatch.acquirable(menuMatch.cost));
+  }
+
   Creature.prototype.goTo = function(location) {
     if (!(location instanceof world.Location)) return console.log('no trespassing');
     this.location = location;

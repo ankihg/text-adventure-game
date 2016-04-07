@@ -14,6 +14,8 @@ module.exports = function(world) {
   var Slurpee = world.Item.Beverage.Slurpee = function(cost) {
     return new Beverage('slurpee', cost);
   }
+  Slurpee.substance = 'slurpee';
+
 
   /* ALCOHOLIC BEVERAGES */
   var AlcoholicBeverage = world.Item.Beverage.AlcoholicBeverage = function(name, cost) {
@@ -24,10 +26,11 @@ module.exports = function(world) {
   var PBR = world.Item.Beverage.AlcoholicBeverage.PBR = function(cost) {
     return new AlcoholicBeverage('pbr', cost);
   }
+  PBR.substance = 'pbr';
 
 
   /* TEST INSTANCES */
-  var pbr = world.Item.Beverage.AlcoholicBeverage.pbr = new PBR(2);
-  var slurpee = world.Item.Beverage.slurpee = new Slurpee(1);
+  var pbr = world.Item.Beverage.AlcoholicBeverage.PBR.pbr = new PBR(2);
+  var slurpee = world.Item.Beverage.Slurpee.slurpee = new Slurpee(1);
 
 }

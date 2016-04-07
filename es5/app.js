@@ -8,14 +8,15 @@ require('./lib/creatures.js')(world);
 
 // test
 var firstBorn = world.Creature.firstBorn;
-var slurpee = world.Item.Beverage.slurpee;
+var slurpee = world.Item.Beverage.Slurpee.slurpee;
+var pbr = world.Item.Beverage.AlcoholicBeverage.PBR.pbr;
 var kellis = world.Location.Bar.kellis
 
-console.log(world.Creature.firstBorn);
-console.log(world.Item.Beverage.slurpee);
+console.log(firstBorn);
+console.log(slurpee);
 
-console.log(kellis);
-world.Creature.firstBorn.goTo(kellis);
+firstBorn.goTo(kellis);
+firstBorn.order('pbr');
 console.log(firstBorn);
 
 // world.Creature.firstBorn.acquire(world.Item.Beverage.slurpee);

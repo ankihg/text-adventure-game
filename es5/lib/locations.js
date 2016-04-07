@@ -1,9 +1,9 @@
 module.exports = function(world) {
 
-  var Location = world.Location = function(name, acquirables) {
+  var Location = world.Location = function(name, menu) {
     // this.pos = [x, y]
     this.name = name;
-    this.acquirables = acquirables;
+    this.menu = menu; //list of menuItems
   }
 
   /* BAR */
@@ -13,7 +13,14 @@ module.exports = function(world) {
   Bar.prototype = new Location();
 
 
-  var kellis = world.Location.Bar.kellis = new Bar('kellis', [world.Item.Beverage.AlcoholicBeverage.PBR]);
+  /* HELPER OBJECTs */
+  function MenuItem(acquirable, cost) {
+    this.acquirable = acquirable;
+    this.cost = cost;
+  }
+
+
+  var kellis = world.Location.Bar.kellis = new Bar('kellis', [new MenuItem(world.Item.Beverage.AlcoholicBeverage.PBR, 2)]);
 
 
 }
