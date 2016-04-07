@@ -8,6 +8,7 @@ module.exports = function(world) {
     this.drinks = 0;
     this.cash = 5;
     this.location; //new world.Location.Home()
+    this.options;
   }
 
   // MAYBE CREATURE ACTIONS RETURN NEXT POSSIBLE ACTIONS??
@@ -45,6 +46,33 @@ module.exports = function(world) {
     this.location = location;
     console.log('welcome to ' + location.name);
   }
+
+  Creature.prototype.assessOptions = function() {
+    //clear prev options
+    this.options = [];
+
+    // delete me
+    this.goTo(world.Location.Bar.kellis);
+
+    // logic to figure out options
+    if (this.location.menu.length) {
+      this.options.push(new Option('SEE MENU', null, console.log, this.location.menu));
+    }
+    return this.options;
+  }
+
+  // HELPER OBJECT
+  function Option(name, subject, action, objects) {
+    this.name = name;
+    this.subject = subject;
+    this.action = action;
+    this.objects = objects;
+  }
+
+  Option.prototype.do = function() {
+    return this.action.apply(this.subject, this.objects);
+  };
+
 
 
   // var firstBorn = world.Creature.firstBorn = new Creature();
