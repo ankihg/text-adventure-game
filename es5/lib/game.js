@@ -20,7 +20,9 @@ Game.prototype.play = function() {
   this.read(function(response) {
     console.log('got line '+response);
 
-    var action = options[parseInt(response)];
+    var action = options.filter(function(option) {
+      return option.command === response;
+    })[0];
     if (action) action.do();
 
     game.turns++;

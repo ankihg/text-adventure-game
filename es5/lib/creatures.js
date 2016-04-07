@@ -56,14 +56,14 @@ module.exports = function(world) {
 
     // logic to figure out options
     if (this.location.menu.length) {
-      this.options.push(new Option('SEE MENU', null, console.log, this.location.menu));
+      this.options.push(new Option('BROWSE MENU', null, console.log, this.location.menu));
     }
     return this.options;
   }
 
   // HELPER OBJECT
-  function Option(name, subject, action, objects) {
-    this.name = name;
+  function Option(command, subject, action, objects) {
+    this.command = command;
     this.subject = subject;
     this.action = action;
     this.objects = objects;
