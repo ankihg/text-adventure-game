@@ -1,15 +1,15 @@
 module.exports = function(world) {
 
-  var Location = world.Location = function(name, menu, amenities) {
+  var Location = world.Location = function(name, menu, activites) {
     // this.pos = [x, y]
     this.name = name;
     this.menu = menu; //list of menuItems, acquirables
-    this.amenities = amenities;
+    this.activites = activites;
   }
 
   /* BAR */
-  var Bar = world.Location.Bar = function(name, menu, amenities) {
-    Location.call(this, name, menu, amenities);
+  var Bar = world.Location.Bar = function(name, menu, activites) {
+    Location.call(this, name, menu, activites);
   }
   Bar.prototype = new Location();
 

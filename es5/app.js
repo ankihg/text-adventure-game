@@ -7,7 +7,7 @@ var game = new Game({}); //pass game an empty world
 require('./lib/misc.js')(game.world);
 require('./lib/items.js')(game.world);
 require('./lib/locations.js')(game.world);
-require('./lib/creatures.js')(game.world);
+require('./lib/creatures.js')(game, game.world);
 
 game.makeRealWorld(); // adds instances of constructors to world
 

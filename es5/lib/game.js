@@ -4,6 +4,7 @@
 var Game = module.exports = function(world) {
   this.world = world; //has constructors of objects found in world
   this.players = [];
+  this.locations = [];
   this.turns = 0;
   console.log('SALEM SUNRISE - A SUN RISES IN SALEM');
 }
@@ -28,14 +29,17 @@ Game.prototype.play = function() {
 
 Game.prototype.makeRealWorld = function() {
   // creatures
-  var firstBorn = this.world.Creature.firstBorn = new this.world.Creature('firstBorn');
+  var firstBorn = new this.world.Creature('firstBorn');
   this.players.push(firstBorn);
-  var tad = this.world.Creature.tad = new this.world.Creature('tad');
+  var tad = new this.world.Creature('tad');
   this.players.push(tad);
 
 
   // locations
-  var kellis = this.world.Location.Bar.kellis = new this.world.Location.Bar('kellis', [new this.world.Misc.MenuItem(this.world.Item.Beverage.AlcoholicBeverage.PBR, 2)]);
+  var kellis = new this.world.Location.Bar('kellis', [new this.world.Misc.MenuItem(this.world.Item.Beverage.AlcoholicBeverage.PBR, 2)]);
+  this.locations.push(kellis);
+  var home = new this.world.Location('home', []);
+  this.locations.push(home);
 }
 
 // prompt next moves

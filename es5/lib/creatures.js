@@ -1,4 +1,4 @@
-module.exports = function(world) {
+module.exports = function(game, world) {
 
   // conceive
   var Creature = world.Creature = function(name) {
@@ -21,6 +21,8 @@ module.exports = function(world) {
 
   Creature.prototype.makeDefaultOptions = function() {
     this.defaultOptions.push(new world.Misc.Option('self reflect', this, this.selfReflect, []));
+    this.defaultOptions.push(new world.Misc.Option('go to', this, this.goTo, []));
+    // check map
   }
 
   Creature.prototype.selfReflect = function() {
@@ -53,8 +55,10 @@ module.exports = function(world) {
 
   Creature.prototype.order = function(itemName) {
 
-    console.log('order what, ' + this.name + '?');
-    if (!itemName) itemName = require('readline-sync').question();
+    if (!itemName) {
+      console.log('[*] order what');
+      itemName = require('readline-sync').question();
+     }
 
     var menuMatch = this.location.menu.filter(function(menuItem) {
       return menuItem.acquirable.substance === itemName;
@@ -66,7 +70,17 @@ module.exports = function(world) {
     this.acquire(new menuMatch.acquirable(menuMatch.cost));
   }
 
-  Creature.prototype.goTo = function(location) {
+  Creature.prototype.goTo = function(locationName) {
+
+    if (!locationName) {
+      console.log('[*] go where');
+      locationName = require('readline-sync').question()
+    };
+
+    var location = game.locations.filter(function(loc) {
+      return loc.name === locationName;
+    })[0];
+
     if (!(location instanceof world.Location)) return console.log('no trespassing');
     this.location = location;
     console.log('welcome to ' + location.name);
@@ -79,7 +93,8 @@ module.exports = function(world) {
     });
 
     // delete me
-    this.goTo(world.Location.Bar.kellis);
+    this.goTo('kellis');
+    // this.goTo(world.Location.Bar.kellis);
 
     // logic to figure out options
     if (this.location.menu.length) {
