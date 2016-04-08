@@ -4,9 +4,18 @@
 var Game = module.exports = function(world) {
   this.world = world; //has constructors of objects found in world
   this.players = [];
-  this.locations = [];
+  this.locations = {};
   this.turns = 0;
   console.log('SALEM SUNRISE - A SUN RISES IN SALEM');
+}
+
+Game.prototype.init = function() {
+  this.makeRealWorld(); // adds instances of constructors to world
+
+  var game = this;
+  this.players.forEach(function(player) {
+    player.location = game.locations.home;
+  })
 }
 
 Game.prototype.play = function() {
@@ -16,7 +25,6 @@ Game.prototype.play = function() {
 
   var game = this;
   var response = this.read();
-  console.log('got line '+response);
 
   var action = options.filter(function(option) {
     return option.command === response.toLowerCase();
@@ -36,15 +44,15 @@ Game.prototype.makeRealWorld = function() {
 
 
   // locations
-  var kellis = new this.world.Location.Bar('kellis', [new this.world.Misc.MenuItem(this.world.Item.Beverage.AlcoholicBeverage.PBR, 2)]);
-  this.locations.push(kellis);
-  var home = new this.world.Location('home', []);
-  this.locations.push(home);
+  this.locations.kellis = new this.world.Location.Bar('kellis', [new this.world.Misc.MenuItem(this.world.Item.Beverage.AlcoholicBeverage.PBR, 2)]);
+  // this.locations.push(kellis);
+  this.locations.home = new this.world.Location('home', []);
+  // this.locations.push(home);
 }
 
 // prompt next moves
 Game.prototype.prompt = function(creature) {
-  console.log('ok... ' + creature.name + '. would you like to');
+  console.log('[*] ok... ' + creature.name + '. want to');
   creature.assessOptions().forEach(function(option) {
     option.print();
   });

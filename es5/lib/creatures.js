@@ -7,7 +7,7 @@ module.exports = function(game, world) {
     this.mood = 'fine';
     this.drinks = 0;
     this.cash = 5;
-    this.location; //new world.Location.Home()
+    this.location;  //new world.Location.Home()
 
     this.defaultOptions = [];
     this.makeDefaultOptions();
@@ -21,7 +21,7 @@ module.exports = function(game, world) {
 
   Creature.prototype.makeDefaultOptions = function() {
     this.defaultOptions.push(new world.Misc.Option('self reflect', this, this.selfReflect, []));
-    this.defaultOptions.push(new world.Misc.Option('go to', this, this.goTo, []));
+    this.defaultOptions.push(new world.Misc.Option('go', this, this.goTo, []));
     // check map
   }
 
@@ -73,17 +73,18 @@ module.exports = function(game, world) {
   Creature.prototype.goTo = function(locationName) {
 
     if (!locationName) {
-      console.log('[*] go where');
+      console.log('[*] to where');
       locationName = require('readline-sync').question()
     };
 
-    var location = game.locations.filter(function(loc) {
-      return loc.name === locationName;
-    })[0];
+    // var location = game.locations.filter(function(loc) {
+    //   return loc.name === locationName;
+    // })[0];
+    var location = game.locations[locationName];
 
     if (!(location instanceof world.Location)) return console.log('no trespassing');
     this.location = location;
-    console.log('welcome to ' + location.name);
+    console.log('[*] welcome to ' + location.name);
   }
 
   Creature.prototype.assessOptions = function() {
@@ -93,7 +94,7 @@ module.exports = function(game, world) {
     });
 
     // delete me
-    this.goTo('kellis');
+    // this.goTo('kellis');
     // this.goTo(world.Location.Bar.kellis);
 
     // logic to figure out options

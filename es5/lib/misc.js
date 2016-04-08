@@ -15,7 +15,7 @@ module.exports = function(world) {
   };
 
   Option.prototype.print = function() {
-    console.log(this.command.toUpperCase());
+    console.log('\t' + this.command.toUpperCase());
   }
 
   // MENU ITEM
@@ -27,8 +27,6 @@ module.exports = function(world) {
     console.log(this.acquirable.substance + ' .......... ' + this.cost);
   }
   MenuItem.printMenu = function(menu) {
-    console.log('print it');
-    console.log(menu);
     menu.forEach(function(menuItem) {
       menuItem.print();
     });
