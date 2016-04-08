@@ -1,9 +1,4 @@
-var readline = require('readline');
-var rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-  terminal: false
-});
+// SALEM SUNRISE
 
 // init game
 var Game = module.exports = function(world) {
@@ -17,17 +12,16 @@ Game.prototype.play = function() {
   var options = this.prompt(this.currentPlayer);
 
   var game = this;
-  this.read(function(response) {
-    console.log('got line '+response);
+  var response = this.read();
+  console.log('got line '+response);
 
-    var action = options.filter(function(option) {
-      return option.command === response;
-    })[0];
-    if (action) action.do();
+  var action = options.filter(function(option) {
+    return option.command === response.toLowerCase();
+  })[0];
+  if (action) action.do();
 
-    game.turns++;
-    game.play();
-  });
+  game.turns++;
+  game.play();
 }
 
 Game.prototype.makeRealWorld = function() {
@@ -53,8 +47,9 @@ Game.prototype.prompt = function(creature) {
 }
 
 // read input
-Game.prototype.read = function(next) {
-  rl.once('line', function(line){
-      if (line) next(line);
-  });
+Game.prototype.read = function() {
+  // require('./util.js').rl.once('line', function(line){
+  //     next(line);
+  // });
+  return require('readline-sync').question();
 }

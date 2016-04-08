@@ -34,10 +34,17 @@ module.exports = function(world) {
   }
 
   Creature.prototype.order = function(itemName) {
+
+    console.log('order what, ' + this.name + '?');
+    if (!itemName) itemName = require('readline-sync').question();
+
     var menuMatch = this.location.menu.filter(function(menuItem) {
       return menuItem.acquirable.substance === itemName;
     })[0];
+
     if (!menuMatch) return console.log('out of stock');
+
+    console.log('here ya go');
     this.acquire(new menuMatch.acquirable(menuMatch.cost));
   }
 
@@ -57,6 +64,7 @@ module.exports = function(world) {
     // logic to figure out options
     if (this.location.menu.length) {
       this.options.push(new world.Misc.Option('see menu', null, world.Misc.MenuItem.printMenu, [this.location.menu]));
+      this.options.push(new world.Misc.Option('order', this, this.order, []));
     }
     return this.options;
   }
