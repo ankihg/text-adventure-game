@@ -5,9 +5,11 @@ var Game = module.exports = function(world) {
   this.world = world; //has constructors of objects found in world
   this.players = [];
   this.turns = 0;
+  console.log('SALEM SUNRISE - A SUN RISES IN SALEM');
 }
 
 Game.prototype.play = function() {
+  console.log('****************************');
   this.currentPlayer = this.players[this.turns % this.players.length];
   var options = this.prompt(this.currentPlayer);
 
