@@ -3,7 +3,7 @@ module.exports = function(game, world) {
   // conceive
   var Creature = world.Creature = function(name) {
     this.name = name;
-    this.backpack = [];
+    this.backpack = {};
     this.mood = 'fine';
     this.drinks = 0;
     this.cash = 5;
@@ -31,26 +31,24 @@ module.exports = function(game, world) {
     console.log('i have ' + this.cash + ' dollars in my pocket');
     console.log('and ' + this.drinks + ' drinks in my brain');
     console.log('i carry these with me');
-    this.backpack.forEach(function(item) {
-      console.log('\t' + item.name);
+    Object.keys(this.backpack).forEach(function(itemName) {
+      console.log('\t' + itemName);
     });
   }
 
-  Creature.prototype.drink = function(beverage) {
-    if (beverage instanceof world.Item.Beverage) {
-      if (this.backpack.indexOf(beverage) < 0) return console.log('i dont have a ' + beverage.name);
+  Creature.prototype.drink = function(beverageName) {
+      if (!this.backpack[beverageName]) return console.log('i dont have a ' + beverage.name);
+      if (!(this.backpack[beverageName] instanceof world.Item.Beverage)) return console.log('i cant drink this');
       if (beverage instanceof world.Item.Beverage.AlcoholicBeverage) this.drinks++;
-      this.backpack.splice(this.backpack.indexOf(beverage), 1);
+      this.backpack[beverageName] = undefined;
       return console.log('gulp');
-    }
-    return console.log('i cant drink this');
   }
 
   Creature.prototype.acquire = function(item) {
     if (!(item instanceof world.Item)) return console.log('i cant acquire this');
     if (this.cash - item.cost < 0) return console.log('i cant pay for this');
     this.cash -= item.cost;
-    this.backpack.push(item);
+    this.backpack[item.name] = item;
   }
 
   Creature.prototype.order = function(itemName) {
