@@ -8,13 +8,31 @@ module.exports = function(world) {
     this.drinks = 0;
     this.cash = 5;
     this.location; //new world.Location.Home()
-    this.options;
+
+    this.defaultOptions = [];
+    this.makeDefaultOptions();
+    this.options = [];
   }
 
   // MAYBE CREATURE ACTIONS RETURN NEXT POSSIBLE ACTIONS??
   // Creature.prototype.use = function(amenity) {
   //   console.log(amenity);
   // }
+
+  Creature.prototype.makeDefaultOptions = function() {
+    this.defaultOptions.push(new world.Misc.Option('self reflect', this, this.selfReflect, []));
+  }
+
+  Creature.prototype.selfReflect = function() {
+    console.log('my name is ' + this.name);
+    console.log('im at ' + this.location.name + ' and i feel ' + this.mood);
+    console.log('i have ' + this.cash + ' dollars in my pocket');
+    console.log('and ' + this.drinks + ' drinks in my brain');
+    console.log('i carry these with me');
+    this.backpack.forEach(function(item) {
+      console.log('\t' + item.name);
+    });
+  }
 
   Creature.prototype.drink = function(beverage) {
     if (beverage instanceof world.Item.Beverage) {
@@ -55,8 +73,10 @@ module.exports = function(world) {
   }
 
   Creature.prototype.assessOptions = function() {
-    //clear prev options
-    this.options = [];
+    // clear to default options
+    this.options = this.defaultOptions.map(function(defaultOption) {
+      return defaultOption;
+    });
 
     // delete me
     this.goTo(world.Location.Bar.kellis);
