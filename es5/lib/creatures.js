@@ -56,7 +56,7 @@ module.exports = function(world) {
 
     // logic to figure out options
     if (this.location.menu.length) {
-      this.options.push(new world.Misc.Option('BROWSE MENU', null, world.Misc.MenuItem.printMenu, [this.location.menu]));
+      this.options.push(new world.Misc.Option('see menu', null, world.Misc.MenuItem.printMenu, [this.location.menu]));
     }
     return this.options;
   }

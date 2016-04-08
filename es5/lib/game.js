@@ -44,10 +44,11 @@ Game.prototype.makeRealWorld = function() {
 
 // prompt next moves
 Game.prototype.prompt = function(creature) {
-  console.log(creature.name + 's turn');
-  console.log(creature.assessOptions());
-  // var seeMenu = creature.assessOptions()[0];
-  // seeMenu.do();
+  console.log('ok... ' + creature.name + '. would you like to');
+  creature.assessOptions().forEach(function(option) {
+    option.print();
+  });
+
   return creature.options;
 }
 

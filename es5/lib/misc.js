@@ -14,6 +14,10 @@ module.exports = function(world) {
     return this.action.apply(this.subject, this.objects);
   };
 
+  Option.prototype.print = function() {
+    console.log(this.command.toUpperCase());
+  }
+
   // MENU ITEM
   var MenuItem = world.Misc.MenuItem = function(acquirable, cost) {
     this.acquirable = acquirable;
